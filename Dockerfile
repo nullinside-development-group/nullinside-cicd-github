@@ -6,9 +6,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Nullinside.Cicd.GitHub/Nullinside.Cicd.GitHub.csproj", "Nullinside.Cicd.GitHub/"]
-RUN dotnet restore "Nullinside.Cicd.GitHub/Nullinside.Cicd.GitHub.csproj"
+RUN dotnet restore "src/Nullinside.Cicd.GitHub.csproj"
 COPY . .
-WORKDIR "/src/Nullinside.Cicd.GitHub"
+WORKDIR "/src/src"
 RUN dotnet build "Nullinside.Cicd.GitHub.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

@@ -2,6 +2,16 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nullinside.Cicd.GitHub", "Nullinside.Cicd.GitHub\Nullinside.Cicd.GitHub.csproj", "{94D9EEEF-B6C7-46AE-AB78-562D42E719A2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{1313AB57-DA3E-4D64-B432-AC665349F97B}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\codeql.yml = ..\.github\workflows\codeql.yml
+		..\.gitignore = ..\.gitignore
+		..\Dockerfile = ..\Dockerfile
+		..\go.sh = ..\go.sh
+		..\Jenkinsfile = ..\Jenkinsfile
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
