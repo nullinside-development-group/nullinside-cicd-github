@@ -9,7 +9,7 @@
 # the `language` matrix defined below to confirm you have the correct set of
 # supported CodeQL languages.
 #
-name: "CodeQL"
+name: "Associate to Project"
 
 on:
   issues:
@@ -24,16 +24,10 @@ jobs:
       # Required for actions/setup-dotnet@v3 on self-hosted runners where runners don't have sudo permissions
       DOTNET_INSTALL_DIR: "./.dotnet"
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        
-      # Install the .NET Core workload
-      - name: Install .NET Core
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 8.x.x
-        
-      # Execute the build
-      - name: Execute Release Build
-        working-directory: ./src
-        run: dotnet build --configuration Release
+        - name: Add To GitHub projects
+          uses: actions/add-to-project@v0.5.0
+          with:
+              # You can target a project in a different organization
+              # to the issue
+              project-url: https://github.com/orgs/<orgName>/projects/<projectNumber>
+              github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
