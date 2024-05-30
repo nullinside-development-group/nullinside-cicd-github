@@ -9,12 +9,18 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <DocumentationFile>bin\Debug\Nullinside.Cicd.GitHub.xml</DocumentationFile>
+        <DocumentationFile>bin\Debug\Nullinside.Cicd.GitHub.xml</DocumentationFile>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <DocumentationFile>bin\Release\Nullinside.Cicd.GitHub.xml</DocumentationFile>
-      <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <DocumentationFile>bin\Release\Nullinside.Cicd.GitHub.xml</DocumentationFile>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+        <PackageReference Include="Octokit" Version="10.0.0"/>
+        <PackageReference Include="Octokit.GraphQL" Version="0.3.0-beta"/>
+    </ItemGroup>
 
 </Project>
