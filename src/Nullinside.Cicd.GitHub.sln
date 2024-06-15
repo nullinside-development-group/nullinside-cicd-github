@@ -12,6 +12,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{13
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octokit.GraphQL", "octokit.graphql.net\src\Octokit.GraphQL\Octokit.GraphQL.csproj", "{A6ABB06A-166F-41B5-BC79-10B3068A6862}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octokit.GraphQL.Core", "octokit.graphql.net\src\Octokit.GraphQL.Core\Octokit.GraphQL.Core.csproj", "{33A1CD7F-ACA4-4942-A405-1CB9DB6ABB25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octokit.GraphQL.Core.Generation", "octokit.graphql.net\src\Octokit.GraphQL.Core.Generation\Octokit.GraphQL.Core.Generation.csproj", "{98062DEE-C09A-4479-A4D9-A19E2EA4F0E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,5 +28,17 @@ Global
 		{94D9EEEF-B6C7-46AE-AB78-562D42E719A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94D9EEEF-B6C7-46AE-AB78-562D42E719A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94D9EEEF-B6C7-46AE-AB78-562D42E719A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6ABB06A-166F-41B5-BC79-10B3068A6862}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6ABB06A-166F-41B5-BC79-10B3068A6862}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6ABB06A-166F-41B5-BC79-10B3068A6862}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6ABB06A-166F-41B5-BC79-10B3068A6862}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33A1CD7F-ACA4-4942-A405-1CB9DB6ABB25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33A1CD7F-ACA4-4942-A405-1CB9DB6ABB25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33A1CD7F-ACA4-4942-A405-1CB9DB6ABB25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33A1CD7F-ACA4-4942-A405-1CB9DB6ABB25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98062DEE-C09A-4479-A4D9-A19E2EA4F0E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98062DEE-C09A-4479-A4D9-A19E2EA4F0E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98062DEE-C09A-4479-A4D9-A19E2EA4F0E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98062DEE-C09A-4479-A4D9-A19E2EA4F0E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
