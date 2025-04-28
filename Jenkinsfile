@@ -16,9 +16,12 @@ pipeline {
 				withCredentials([
 					usernamePassword(credentialsId: 'GitHub PAT', passwordVariable: 'GITHUB_PAT', usernameVariable: 'GITHUB_USERNAME'),
 				]) {
-					sh """
-						bash go.sh 
-					"""
+					script {
+						def statusCode = sh script: "bash go.sh", returnStatus:true
+						if (statusCode != 0) {
+							error "Build Failed"
+						}
+					}
 				}
             }
         }
