@@ -13,7 +13,7 @@ services:
         environment:
             - GITHUB_PAT
         ports:
-            - 8083:8080
-            - 8084:8081
+            - 8085:8080
+            - 8086:8081
         restart: unless-stopped
         image: nullinside-cicd-github:latest
