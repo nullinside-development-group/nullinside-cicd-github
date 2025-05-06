@@ -1,5 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using log4net;
+using log4net.Config;
+using log4net.Core;
+
 using Nullinside.Cicd.GitHub;
 using Nullinside.Cicd.GitHub.Rule;
 
@@ -10,6 +14,9 @@ using Connection = Octokit.GraphQL.Connection;
 using ID = Octokit.GraphQL.ID;
 using ProductHeaderValue = Octokit.ProductHeaderValue;
 using Query = Octokit.GraphQL.Query;
+
+XmlConfigurator.Configure(new FileInfo("log4net.config"));
+var log = LogManager.GetLogger(typeof(Program));
 
 IRepoRule?[] rules = AppDomain.CurrentDomain.GetAssemblies()
   .SelectMany(a => a.GetTypes())
@@ -42,6 +49,6 @@ while (true) {
     }
   }
 
-  Console.WriteLine("Waiting for next execution time...");
+  log.Info("Waiting for next execution time...");
   Task.WaitAll(Task.Delay(TimeSpan.FromMinutes(5)));
 }

@@ -1,4 +1,6 @@
-﻿using Octokit;
+﻿using log4net;
+
+using Octokit;
 using Octokit.GraphQL;
 using Octokit.GraphQL.Core;
 using Octokit.GraphQL.Model;
@@ -12,6 +14,11 @@ namespace Nullinside.Cicd.GitHub.Rule;
 ///   Creates the branch merging rules based on the code bases' language.
 /// </summary>
 public class CreateRulesets : IRepoRule {
+  /// <summary>
+  /// The logger
+  /// </summary>
+  private ILog _log = LogManager.GetLogger(typeof(CreateRulesets));
+  
   /// <inheritdoc />
   public async Task Handle(GitHubClient client, Connection graphQl, ID projectId, Repository repo) {
     // This currently doesn't run properly. You get an error about not specifying multiple Parameters on the status
@@ -33,7 +40,7 @@ public class CreateRulesets : IRepoRule {
       .Repository(repo.Name, Constants.GITHUB_ORG)
       .Select(i => i.Id));
 
-    Console.WriteLine($"{repo.Name}: Creating default ruleset");
+    _log.Info($"{repo.Name}: Creating default ruleset");
     StatusCheckConfigurationInput[]? statusChecks = null;
     if ("Typescript".Equals(repo.Language, StringComparison.InvariantCultureIgnoreCase)) {
       statusChecks = new[] {
