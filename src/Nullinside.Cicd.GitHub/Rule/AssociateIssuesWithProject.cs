@@ -8,7 +8,11 @@ using Repository = Octokit.Repository;
 
 namespace Nullinside.Cicd.GitHub.Rule;
 
+/// <summary>
+///   Handles associating issues with the project automatically.
+/// </summary>
 public class AssociateIssuesWithProject : IRepoRule {
+  /// <inheritdoc />
   public async Task Handle(GitHubClient client, Connection graphQl, ID projectId, Repository repo) {
     if (!repo.HasIssues) {
       return;

@@ -1,0 +1,19 @@
+name: nullinside-cicd-github
+services:
+    nullinside-cicd-github:
+        build:
+            context: .
+            tags:
+                - "nullinside-cicd-github:latest"
+        logging:
+            driver: loki
+            options:
+                loki-url: 'http://192.168.1.4:3100/loki/api/v1/push'
+        container_name: nullinside-cicd-github
+        environment:
+            - GITHUB_PAT
+        ports:
+            - 8081:8080
+            - 8082:8081
+        restart: unless-stopped
+        image: nullinside-cicd-github:latest

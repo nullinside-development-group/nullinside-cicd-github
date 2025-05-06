@@ -18,25 +18,30 @@ IRepoRule?[] rules = AppDomain.CurrentDomain.GetAssemblies()
   .Where(o => null != o)
   .ToArray();
 
-var client = new GitHubClient(new ProductHeaderValue("nullinside")) {
-  Credentials = new Credentials(Environment.GetEnvironmentVariable("GITHUB_PAT"))
-};
+while (true) {
+  var client = new GitHubClient(new ProductHeaderValue("nullinside")) {
+    Credentials = new Credentials(Environment.GetEnvironmentVariable("GITHUB_PAT"))
+  };
 
-var graphQl = new Connection(new Octokit.GraphQL.ProductHeaderValue("nullinside"),
-  Environment.GetEnvironmentVariable("GITHUB_PAT"));
+  var graphQl = new Connection(new Octokit.GraphQL.ProductHeaderValue("nullinside"),
+    Environment.GetEnvironmentVariable("GITHUB_PAT"));
 
-ID projectId = await graphQl.Run(new Query()
-  .Organization(Constants.GITHUB_ORG)
-  .ProjectV2(Constants.GITHUB_PROJECT_NUM)
-  .Select(p => p.Id));
+  ID projectId = await graphQl.Run(new Query()
+    .Organization(Constants.GITHUB_ORG)
+    .ProjectV2(Constants.GITHUB_PROJECT_NUM)
+    .Select(p => p.Id));
 
-IReadOnlyList<Repository>? repository = await client.Repository.GetAllForOrg(Constants.GITHUB_ORG);
-foreach (Repository repo in repository) {
-  if (repo.Private) {
-    continue;
+  IReadOnlyList<Repository>? repository = await client.Repository.GetAllForOrg(Constants.GITHUB_ORG);
+  foreach (Repository repo in repository) {
+    if (repo.Private) {
+      continue;
+    }
+
+    foreach (IRepoRule? rule in rules) {
+      await rule!.Handle(client, graphQl, projectId, repo);
+    }
   }
-  
-  foreach (IRepoRule? rule in rules) {
-    await rule.Handle(client, graphQl, projectId, repo);
-  }
+
+  Console.WriteLine("Waiting for next execution time...");
+  Task.WaitAll(Task.Delay(TimeSpan.FromMinutes(5)));
 }
