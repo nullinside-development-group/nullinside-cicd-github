@@ -8,7 +8,11 @@ using Repository = Octokit.Repository;
 
 namespace Nullinside.Cicd.GitHub.Rule;
 
+/// <summary>
+///   Creates the branch merging rules based on the code bases' language.
+/// </summary>
 public class CreateRulesets : IRepoRule {
+  /// <inheritdoc />
   public async Task Handle(GitHubClient client, Connection graphQl, ID projectId, Repository repo) {
     // This currently doesn't run properly. You get an error about not specifying multiple Parameters on the status
     // checks. Waiting on an update from the source library to not include nulls in the compiled query.
@@ -18,19 +22,19 @@ public class CreateRulesets : IRepoRule {
       .Rulesets()
       .AllPages()
       .Select(i => i.Name));
-    
+
     string? expectedRuleset =
       rulesets.FirstOrDefault(r => "main".Equals(r, StringComparison.InvariantCultureIgnoreCase));
     if (null != expectedRuleset) {
       return;
     }
-    
+
     ID id = await graphQl.Run(new Query()
       .Repository(repo.Name, Constants.GITHUB_ORG)
       .Select(i => i.Id));
-    
+
     Console.WriteLine($"{repo.Name}: Creating default ruleset");
-    StatusCheckConfigurationInput[] statusChecks = null;
+    StatusCheckConfigurationInput[]? statusChecks = null;
     if ("Typescript".Equals(repo.Language, StringComparison.InvariantCultureIgnoreCase)) {
       statusChecks = new[] {
         new StatusCheckConfigurationInput {
@@ -90,7 +94,7 @@ public class CreateRulesets : IRepoRule {
         }
       });
     }
-    
+
     await graphQl.Run(new Mutation()
       .CreateRepositoryRuleset(new Arg<CreateRepositoryRulesetInput>(new CreateRepositoryRulesetInput {
         SourceId = id,

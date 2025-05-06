@@ -29,12 +29,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
         
       # Install the .NET Core workload
       - name: Install .NET Core
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.x.x
+          dotnet-version: 9.x.x
         
       # Execute the build
       - name: Execute Release Build
@@ -49,12 +51,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
 
       # Install the .NET Core workload
       - name: Install .NET Core
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.x.x
+          dotnet-version: 9.x.x
 
       # Execute the tests
       - name: Execute Tests
@@ -92,6 +96,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
       
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
@@ -114,7 +120,7 @@ jobs:
       - name: Install .NET Core
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.x.x
+          dotnet-version: 9.x.x
       
       # Execute the build
       - name: Execute Build
