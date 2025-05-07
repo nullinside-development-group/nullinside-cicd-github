@@ -38,9 +38,9 @@ public class MoveClosedToDone : IRepoRule {
         continue;
       }
 
-      _log.Info($"{repo.Name}: Associating issue #{issue.IssueNumber}");
+      _log.Info($"{repo.Name}: Moving issue to done column (issue #{issue.IssueNumber})");
 
-      var mutation = new MutateIssueProjectStatuses(projectId.Value, issue.ProjectIssueId, issue.FieldId, "98236657");
+      var mutation = new MutateIssueProjectStatuses(projectId.Value, issue.ProjectIssueId, issue.FieldId, Constants.GITHUB_PROJECT_DONE_SINGLE_SELECT_ID);
       await mutation.SendAsync();
     }
   }
