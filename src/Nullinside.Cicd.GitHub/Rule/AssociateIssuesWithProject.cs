@@ -15,10 +15,10 @@ namespace Nullinside.Cicd.GitHub.Rule;
 /// </summary>
 public class AssociateIssuesWithProject : IRepoRule {
   /// <summary>
-  /// The logger
+  ///   The logger
   /// </summary>
-  private ILog _log = LogManager.GetLogger(typeof(AssociateIssuesWithProject));
-  
+  private readonly ILog _log = LogManager.GetLogger(typeof(AssociateIssuesWithProject));
+
   /// <inheritdoc />
   public async Task Handle(GitHubClient client, Connection graphQl, ID projectId, Repository repo) {
     if (!repo.HasIssues) {

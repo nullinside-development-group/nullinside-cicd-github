@@ -15,10 +15,10 @@ namespace Nullinside.Cicd.GitHub.Rule;
 /// </summary>
 public class CreateRulesets : IRepoRule {
   /// <summary>
-  /// The logger
+  ///   The logger
   /// </summary>
-  private ILog _log = LogManager.GetLogger(typeof(CreateRulesets));
-  
+  private readonly ILog _log = LogManager.GetLogger(typeof(CreateRulesets));
+
   /// <inheritdoc />
   public async Task Handle(GitHubClient client, Connection graphQl, ID projectId, Repository repo) {
     // This currently doesn't run properly. You get an error about not specifying multiple Parameters on the status
