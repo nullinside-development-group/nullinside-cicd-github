@@ -2,7 +2,6 @@
 
 using log4net;
 using log4net.Config;
-using log4net.Core;
 
 using Nullinside.Cicd.GitHub;
 using Nullinside.Cicd.GitHub.Rule;
@@ -16,7 +15,7 @@ using ProductHeaderValue = Octokit.ProductHeaderValue;
 using Query = Octokit.GraphQL.Query;
 
 XmlConfigurator.Configure(new FileInfo("log4net.config"));
-var log = LogManager.GetLogger(typeof(Program));
+ILog log = LogManager.GetLogger(typeof(Program));
 
 IRepoRule?[] rules = AppDomain.CurrentDomain.GetAssemblies()
   .SelectMany(a => a.GetTypes())
