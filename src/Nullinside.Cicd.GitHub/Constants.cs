@@ -23,9 +23,9 @@ public static class Constants {
   ///   The github project's unique identifier on github.
   /// </summary>
   public const int GITHUB_PROJECT_NUM = 1;
-  
+
   /// <summary>
-  /// The unique identifier on GitHub for the "done" status of items.
+  ///   The unique identifier on GitHub for the "done" status of items.
   /// </summary>
   /// <remarks>This was found by manually querying the API. It's a nightmare to pull. Hence the hardcoding.</remarks>
   public const string GITHUB_PROJECT_DONE_SINGLE_SELECT_ID = "98236657";
