@@ -54,6 +54,9 @@ public class CreateRulesets : IRepoRule {
           Context = "npm run stylelint"
         },
         new StatusCheckConfigurationInput {
+          Context = "npm run knip"
+        },
+        new StatusCheckConfigurationInput {
           Context = "Analyze (javascript-typescript)"
         },
         new StatusCheckConfigurationInput {
